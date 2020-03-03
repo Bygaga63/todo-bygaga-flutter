@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         Routes.todoList: (_) => TodoListPage(),
         Routes.todo: (_) => TodoPage(),
       },
-      initialRoute: Routes.todo,
+//      initialRoute: Routes.todo,
     );
   }
 }

@@ -33,6 +33,7 @@ class TodoCard extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemExtent: 30.0,
             itemCount: todo.tasks.length,
             itemBuilder: (BuildContext context, int index) {
