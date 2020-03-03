@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
+import 'package:todo_bygaga/todo/data/repositories/todo_repositoy_impl.dart';
+import 'package:todo_bygaga/todo/presentation/widgets/add_task.dart';
+import 'package:todo_bygaga/todo/presentation/widgets/task_list.dart';
 
 class TodoPage extends StatelessWidget {
+  final TodoModel todo = TodoRepositoryImpl().getList()[0];
+
   void _addClick(BuildContext context) {
     showModalBottomSheet(
         shape:
@@ -9,31 +15,7 @@ class TodoPage extends StatelessWidget {
         context: context,
         builder: (context) {
           return SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    TextField(
-                      autofocus: true,
-                      minLines: 5,
-                      maxLines: 10,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(20.0),
-                        border: InputBorder.none,
-                        hintText: 'New task',
-                      ),
-                    ),
-                    Container(
-                      color: Colors.purple,
-                      height: 40.0,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: AddTask(),
           );
         });
   }
@@ -41,6 +23,11 @@ class TodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SafeArea(
+        child: TaskList(
+          todo: todo,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addClick(context);
