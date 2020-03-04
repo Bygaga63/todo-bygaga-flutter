@@ -41,7 +41,7 @@ class TodoListPage extends StatelessWidget {
                         style: TextStyle(fontSize: 10.0),
                       ),
                     ),
-                  )
+                  ),
                 ],
               )
             ],

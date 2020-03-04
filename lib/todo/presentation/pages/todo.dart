@@ -25,7 +25,7 @@ class TodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(27, 28, 30, 1),
+      backgroundColor: Color(0xFF1b1c1e),
       body: SafeArea(
         child: TaskList(
           todo: todo,
