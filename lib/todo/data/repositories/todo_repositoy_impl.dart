@@ -8,11 +8,15 @@ class TodoRepositoryImpl extends TodoRepository {
     return [
       TodoModel(
         id: 1,
-        title: 'Santorini',
+        title: 'Create flutter todo list',
         tasks: [
-          TaskModel(id: 1, isComplete: false, description: 'Buy Headphones'),
+          TaskModel(id: 1, isComplete: false, description: 'Find desighn'),
+          TaskModel(id: 2, isComplete: false, description: 'Create project'),
           TaskModel(
-              id: 2, isComplete: false, description: 'Send flight itinerary')
+              id: 3,
+              isComplete: true,
+              description: 'Add clean arcitecture structure'),
+          TaskModel(id: 4, isComplete: true, description: 'Create MVP')
         ],
       ),
       TodoModel(
