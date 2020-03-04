@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
 import 'package:todo_bygaga/todo/data/repositories/todo_repositoy_impl.dart';
-import 'package:todo_bygaga/todo/presentation/widgets/add_task.dart';
+import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/task_list.dart';
 
 class TodoPage extends StatelessWidget {
@@ -15,7 +15,9 @@ class TodoPage extends StatelessWidget {
         context: context,
         builder: (context) {
           return SingleChildScrollView(
-            child: AddTask(),
+            child: AddEditTask(
+              todoColor: todo.color,
+            ),
           );
         });
   }
@@ -23,6 +25,7 @@ class TodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(27, 28, 30, 1),
       body: SafeArea(
         child: TaskList(
           todo: todo,
@@ -33,12 +36,14 @@ class TodoPage extends StatelessWidget {
           _addClick(context);
         },
         tooltip: 'Add',
+        backgroundColor: todo.color,
         child: Icon(
           Icons.add,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Color(0xFF2D2E30),
         shape: CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Container(

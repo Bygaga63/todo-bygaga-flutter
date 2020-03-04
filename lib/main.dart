@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_bygaga/todo/presentation/pages/routes.dart';
+import 'package:todo_bygaga/common/routes.dart';
 import 'package:todo_bygaga/todo/presentation/pages/todo.dart';
 import 'package:todo_bygaga/todo/presentation/pages/todo_list.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         Routes.todoList: (_) => TodoListPage(),
         Routes.todo: (_) => TodoPage(),
       },
-      initialRoute: Routes.todo,
+//      initialRoute: Routes.todo,
     );
   }
 }
