@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:todo_bygaga/core/styles/colors.dart';
 import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
-import 'package:todo_bygaga/todo/data/repositories/todo_repositoy_impl.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/task_list.dart';
 
-class TodoPage extends StatelessWidget {
-  final TodoModel todo = TodoRepositoryImpl().getList()[0];
+class TodoPage extends StatefulWidget {
+  final TodoModel todo;
 
+  TodoPage({this.todo}) {
+    FlutterStatusbarcolor.setStatusBarColor(AppColors.todoBackgroundColor);
+  }
+
+  @override
+  _TodoPageState createState() => _TodoPageState();
+}
+
+class _TodoPageState extends State<TodoPage> {
   void _addClick(BuildContext context) {
     showModalBottomSheet(
         shape:
@@ -16,19 +26,42 @@ class TodoPage extends StatelessWidget {
         builder: (context) {
           return SingleChildScrollView(
             child: AddEditTask(
-              todoColor: todo.color,
+              todoColor: widget.todo.color,
             ),
           );
         });
   }
 
+  Widget _closeButton(context) => ClipOval(
+        child: InkWell(
+          onTap: () => Navigator.of(context).pop(),
+          child: Container(
+            padding: EdgeInsets.all(1.0),
+            color: Color(0xFFF4F4F4),
+            child: Icon(
+              Icons.close,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1b1c1e),
+      backgroundColor: AppColors.todoBackgroundColor,
       body: SafeArea(
-        child: TaskList(
-          todo: todo,
+        child: Stack(
+          children: <Widget>[
+            TaskList(
+              todo: widget.todo,
+            ),
+            Positioned(
+              child: this._closeButton(context),
+              right: 5.0,
+              top: 5.0,
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -36,7 +69,7 @@ class TodoPage extends StatelessWidget {
           _addClick(context);
         },
         tooltip: 'Add',
-        backgroundColor: todo.color,
+        backgroundColor: widget.todo.color,
         child: Icon(
           Icons.add,
         ),

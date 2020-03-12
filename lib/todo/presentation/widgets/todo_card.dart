@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:todo_bygaga/core/routes.dart';
 import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
 
 class TodoCard extends StatelessWidget {
@@ -52,11 +53,14 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: isCreateCard ? _createContent() : _todoContent(),
+      child: InkWell(
+        onTap: () => Navigator.of(context).pushNamed(Routes.todo),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: isCreateCard ? _createContent() : _todoContent(),
+          ),
         ),
       ),
     );

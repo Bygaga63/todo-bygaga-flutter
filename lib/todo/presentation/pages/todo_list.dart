@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:todo_bygaga/core/styles/colors.dart';
 import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
 import 'package:todo_bygaga/todo/data/repositories/todo_repositoy_impl.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/todo_card.dart';
 
 class TodoListPage extends StatelessWidget {
+  TodoListPage() {
+    FlutterStatusbarcolor.setStatusBarColor(AppColors.todoBackgroundColor);
+  }
+
   final List<TodoModel> todos = TodoRepositoryImpl().getList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.todoListBackgroundColor,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
