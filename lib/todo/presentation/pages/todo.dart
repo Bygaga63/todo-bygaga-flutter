@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:todo_bygaga/core/styles/colors.dart';
-import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
+import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/task_list.dart';
 
 class TodoPage extends StatefulWidget {
-  final TodoModel todo;
+  final Todo todo;
 
   TodoPage({this.todo}) {
     FlutterStatusbarcolor.setStatusBarColor(AppColors.todoBackgroundColor);
@@ -26,7 +26,7 @@ class _TodoPageState extends State<TodoPage> {
         builder: (context) {
           return SingleChildScrollView(
             child: AddEditTask(
-              todoColor: widget.todo.color,
+              todoColor: Color(widget.todo.color),
             ),
           );
         });
@@ -69,7 +69,7 @@ class _TodoPageState extends State<TodoPage> {
           _addClick(context);
         },
         tooltip: 'Add',
-        backgroundColor: widget.todo.color,
+        backgroundColor: Color(widget.todo.color),
         child: Icon(
           Icons.add,
         ),

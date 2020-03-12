@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:todo_bygaga/core/styles/colors.dart';
-import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
-import 'package:todo_bygaga/todo/data/repositories/todo_repositoy_impl.dart';
+import 'package:todo_bygaga/main.dart';
+import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/todo_card.dart';
 
 class TodoListPage extends StatelessWidget {
@@ -10,7 +10,7 @@ class TodoListPage extends StatelessWidget {
     FlutterStatusbarcolor.setStatusBarColor(AppColors.todoBackgroundColor);
   }
 
-  final List<TodoModel> todos = TodoRepositoryImpl().getList();
+  final List<Todo> todos = TEMP_DATA;
 
   @override
   Widget build(BuildContext context) {

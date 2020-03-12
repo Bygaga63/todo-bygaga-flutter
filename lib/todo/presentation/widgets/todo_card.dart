@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:todo_bygaga/core/routes.dart';
-import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
+import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 
 class TodoCard extends StatelessWidget {
   bool isCreateCard;
-  final TodoModel todo;
+  final Todo todo;
 
   TodoCard({this.todo, this.isCreateCard});
 

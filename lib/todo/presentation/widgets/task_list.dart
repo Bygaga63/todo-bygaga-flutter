@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:todo_bygaga/todo/data/models/TaskModel.dart';
-import 'package:todo_bygaga/todo/data/models/TodoModel.dart';
+import 'package:todo_bygaga/todo/data/models/task_model.dart';
+import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 
 class TaskList extends StatefulWidget {
-  final TodoModel todo;
+  final Todo todo;
 
   TaskList({@required this.todo});
 
@@ -30,7 +30,7 @@ class _TaskListState extends State<TaskList> {
             title: Text(task.description),
             leading: Icon(
               Icons.check_circle,
-              color: widget.todo.color,
+              color: Color(widget.todo.color),
             ),
           ))
       .toList();
@@ -48,7 +48,7 @@ class _TaskListState extends State<TaskList> {
               radius: 20.0,
               lineWidth: 2.5,
               percent: 1,
-              progressColor: widget.todo.color,
+              progressColor: Color(widget.todo.color),
             ),
             onTap: () => _updateClick(context, task),
           ))
@@ -63,7 +63,7 @@ class _TaskListState extends State<TaskList> {
         builder: (context) {
           return SingleChildScrollView(
             child: AddEditTask(
-              todoColor: widget.todo.color,
+              todoColor: Color(widget.todo.color),
               task: task,
             ),
           );
@@ -80,7 +80,7 @@ class _TaskListState extends State<TaskList> {
             lineWidth: 3.5,
             percent: _completedPercent,
             backgroundColor: Color(0xFF333436),
-            progressColor: widget.todo.color,
+            progressColor: Color(widget.todo.color),
           ),
           dense: true,
           title: Text(
