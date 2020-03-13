@@ -1,32 +1,30 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/domain/repositories/todo_repository.dart';
-import 'package:todo_bygaga/todo/domain/use_cases/get_todo.dart';
+import 'package:todo_bygaga/todo/domain/use_cases/remove_todo.dart';
 
 class MockTodoRepository extends Mock implements TodoRepository {}
 
 void main() {
-  GetTodo usecase;
   MockTodoRepository mockTodoRepository;
+  RemoveTodo usecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();
-    usecase = GetTodo(mockTodoRepository);
+    usecase = RemoveTodo(mockTodoRepository);
   });
 
   final tId = '1';
-  final todo = Todo(id: '1', color: 0xFFA088F6, tasks: [], title: 'Test1');
 
-  test('should get todo by id', () async {
+  test('should remove by id', () async {
     // arrange
-    when(mockTodoRepository.getOne(any)).thenAnswer((_) async => Right(todo));
+    when(mockTodoRepository.remove(any)).thenAnswer((_) async => Right(null));
     // act
     final result = await usecase(Params(id: tId));
     // assert
-    verify(mockTodoRepository.getOne(tId));
+    verify(mockTodoRepository.remove(tId));
     verifyNoMoreInteractions(mockTodoRepository);
-    expect(result, Right(todo));
+    expect(result, Right(null));
   });
 }

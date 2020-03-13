@@ -7,4 +7,5 @@ abstract class TodoRepository {
   Future<Either<Failure, Todo>> getOne(String id);
   Future<Either<Failure, void>> update(String id);
   Future<Either<Failure, void>> remove(String id);
+  Future<Either<Failure, Todo>> create(Todo todo);
 }

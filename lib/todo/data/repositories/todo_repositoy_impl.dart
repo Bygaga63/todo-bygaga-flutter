@@ -20,4 +20,7 @@ class TodoRepositoryImpl extends TodoRepository {
 
   @override
   Future<Either<Failure, List<Todo>>> getList() {}
+
+  @override
+  Future<Either<Failure, Todo>> create(Todo todo) {}
 }
