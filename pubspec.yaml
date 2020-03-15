@@ -30,6 +30,8 @@ dependencies:
   dartz: ^0.8.9
   #state manager
   bloc: ^3.0.0
+  #di
+  get_it: ^4.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -11,12 +11,12 @@ import 'package:todo_bygaga/todo/domain/use_cases/update_todo.dart';
 import './bloc.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
-  final GetTodo getTodo;
-  final GetTodoList getTodoList;
-  final UpdateTodo updateTodo;
-  final RemoveTodo removeTodo;
+  final GetTodo todo;
+  final GetTodoList todoList;
+  final UpdateTodo update;
+  final RemoveTodo remove;
 
-  TodosBloc({this.getTodo, this.getTodoList, this.updateTodo, this.removeTodo});
+  TodosBloc({this.todo, this.todoList, this.update, this.remove});
 
   @override
   TodosState get initialState => TodosLoading();
@@ -31,7 +31,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<List<Todo>> _mapGetTodosToState(TodosEvent event) async* {
-    final todos = await getTodoList(NoParams());
+    final todos = await todoList(NoParams());
   }
-
 }
