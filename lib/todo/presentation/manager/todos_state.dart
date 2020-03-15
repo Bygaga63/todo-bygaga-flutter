@@ -18,4 +18,11 @@ class TodosLoaded extends TodosState {
   List<Object> get props => [todos];
 }
 
-class TodosNotLoaded extends TodosState {}
+class TodosNotLoaded extends TodosState {
+  final String message;
+
+  TodosNotLoaded({this.message});
+
+  @override
+  List<Object> get props => [message];
+}

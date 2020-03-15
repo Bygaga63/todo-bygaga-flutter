@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:todo_bygaga/core/error/failures.dart';
 import 'package:todo_bygaga/core/usecases/usecase.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/domain/use_cases/get_todo.dart';
@@ -26,11 +28,17 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     TodosEvent event,
   ) async* {
     if (event is GetTodoList) {
-//      yield* _mapGetTodosToState(event);
+      final result = await todoList(NoParams());
+      yield* _eitherLoadedOrErrorState(result);
     }
   }
 
-  Stream<List<Todo>> _mapGetTodosToState(TodosEvent event) async* {
-    final todos = await todoList(NoParams());
+  Stream<TodosState> _eitherLoadedOrErrorState(
+    Either<Failure, List<Todo>> failureOrTodoList,
+  ) async* {
+    yield failureOrTodoList.fold(
+      (failure) => TodosNotLoaded(message: failure.text),
+      (todos) => TodosLoaded(todos),
+    );
   }
 }

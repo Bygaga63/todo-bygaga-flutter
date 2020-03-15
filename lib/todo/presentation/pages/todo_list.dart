@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:todo_bygaga/core/styles/colors.dart';
-import 'package:todo_bygaga/main.dart';
-import 'package:todo_bygaga/todo/domain/entities/todo.dart';
-import 'package:todo_bygaga/todo/presentation/widgets/todo_card.dart';
+import 'package:todo_bygaga/injection_container.dart';
+import 'package:todo_bygaga/todo/presentation/manager/bloc.dart';
+import 'package:todo_bygaga/todo/presentation/widgets/todo_card_list.dart';
 
 class TodoListPage extends StatelessWidget {
   TodoListPage() {
     FlutterStatusbarcolor.setStatusBarColor(AppColors.todoBackgroundColor);
   }
-
-  final List<Todo> todos = TEMP_DATA;
 
   @override
   Widget build(BuildContext context) {
@@ -53,33 +52,24 @@ class TodoListPage extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: <Widget>[
+        body: BlocProvider<TodosBloc>(
+          create: (_) => sl<TodosBloc>()..add(GetTodosEvent()),
+          child: Column(children: <Widget>[
             SizedBox(
               height: 50.0,
             ),
-            Expanded(
-              child: GridView.count(
-                padding: EdgeInsets.all(10.0),
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  TodoCard(
-                    isCreateCard: true,
-                  ),
-                  TodoCard(
-                    isCreateCard: false,
-                    todo: todos[0],
-                  ),
-                  TodoCard(
-                    isCreateCard: false,
-                    todo: todos[1],
-                  ),
-                ],
-              ),
-            ),
-          ],
+            BlocBuilder<TodosBloc, TodosState>(
+              builder: (BuildContext context, TodosState state) {
+                if (state is TodosLoading) {
+                  return Text('loading...');
+                } else if (state is TodosLoaded) {
+                  return TodoCardList(todos: state.todos);
+                } else if (state is TodosNotLoaded) {
+                  return Text('not loaded');
+                }
+              },
+            )
+          ]),
         ));
   }
 }
