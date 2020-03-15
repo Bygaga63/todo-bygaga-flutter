@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:todo_bygaga/todo/data/models/task_model.dart';
+import 'package:todo_bygaga/todo/domain/entities/task.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 
@@ -16,10 +16,10 @@ class TaskList extends StatefulWidget {
 class _TaskListState extends State<TaskList> {
   Color _expansionColor = Color(0xFFB4B5B7);
 
-  List<TaskModel> get _completedTasks =>
+  List<Task> get _completedTasks =>
       widget.todo.tasks.where((task) => task.isComplete).toList();
 
-  List<TaskModel> get _currentTasks =>
+  List<Task> get _currentTasks =>
       widget.todo.tasks.where((task) => !task.isComplete).toList();
 
   double get _completedPercent =>
@@ -54,7 +54,7 @@ class _TaskListState extends State<TaskList> {
           ))
       .toList();
 
-  void _updateClick(BuildContext context, TaskModel task) {
+  void _updateClick(BuildContext context, Task task) {
     showModalBottomSheet(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),

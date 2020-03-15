@@ -4,11 +4,6 @@ import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/domain/repositories/todo_repository.dart';
 
 class TodoRepositoryImpl extends TodoRepository {
-//  @override
-//  List<TodoModel> getList() {
-//    return
-//  }
-
   @override
   Future<Either<Failure, Todo>> getOne(String id) {}
 

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_bygaga/todo/data/models/task_model.dart';
+import 'package:todo_bygaga/todo/domain/entities/task.dart';
 
 class AddEditTask extends StatelessWidget {
-  final Function(TaskModel) addTask;
-  final Function(TaskModel) updateTask;
+  final Function(Task) addTask;
+  final Function(Task) updateTask;
   final Color todoColor;
-  final TaskModel task;
+  final Task task;
   bool get isEditing => task != null;
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
