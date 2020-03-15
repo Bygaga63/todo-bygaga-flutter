@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:todo_bygaga/core/error/failures.dart';
 import 'package:todo_bygaga/core/usecases/usecase.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
-import 'package:todo_bygaga/todo/domain/exceptions/TodoFailure.dart';
+import 'package:todo_bygaga/todo/domain/exceptions/todo_failures.dart';
 import 'package:todo_bygaga/todo/domain/repositories/todo_repository.dart';
 
 class UpdateTodo extends UseCase<Todo, Params> {

@@ -1,6 +1,6 @@
 import 'package:todo_bygaga/core/error/failures.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
-import 'package:todo_bygaga/todo/domain/exceptions/TodoFailure.dart';
+import 'package:todo_bygaga/todo/domain/exceptions/todo_failures.dart';
 
 class TodoValidator {
   final Todo todo;
