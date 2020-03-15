@@ -11,7 +11,3 @@ abstract class Failure extends Equatable {
 class ServerFailure extends Failure {}
 
 class CacheFailure extends Failure {}
-
-class TodoFailure extends Failure {
-  TodoFailure.message(String text) : super.message(text);
-}

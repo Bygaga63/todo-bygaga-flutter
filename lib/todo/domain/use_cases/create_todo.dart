@@ -3,7 +3,6 @@ import 'package:todo_bygaga/core/error/failures.dart';
 import 'package:todo_bygaga/core/usecases/usecase.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
 import 'package:todo_bygaga/todo/domain/repositories/todo_repository.dart';
-import 'package:todo_bygaga/todo/domain/validator/todo_validator.dart';
 
 class CreateTodo extends UseCase<Todo, Params> {
   final TodoRepository todoRepository;
@@ -11,11 +10,11 @@ class CreateTodo extends UseCase<Todo, Params> {
   CreateTodo(this.todoRepository);
 
   @override
-  Future<Either<Failure, Todo>> call(Params params) {
-    var validateCreate = TodoValidator(params.todo).validateCreate();
-    if (validateCreate != null) {
+  Future<Either<Failure, Todo>> call(Params params) async {
+//    var validateCreate = TodoValidator(params.todo).validateCreate();
+//    if (validateCreate != null) {
 //      return Left(validateCreate);
-    }
+//    }
     return todoRepository.create(params.todo);
   }
 }

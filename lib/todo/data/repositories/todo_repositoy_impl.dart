@@ -13,10 +13,10 @@ class TodoRepositoryImpl extends TodoRepository {
   Future<Either<Failure, Todo>> getOne(String id) {}
 
   @override
-  Future<Either<Failure, Function>> remove(String id) {}
+  Future<Either<Failure, void>> remove(String id) {}
 
   @override
-  Future<Either<Failure, Function>> update(String id) {}
+  Future<Either<Failure, Todo>> save(Todo todo) {}
 
   @override
   Future<Either<Failure, List<Todo>>> getList() {}
