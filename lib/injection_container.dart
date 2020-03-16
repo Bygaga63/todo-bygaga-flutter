@@ -11,6 +11,7 @@ import 'package:todo_bygaga/todo/presentation/manager/todos_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  //Bloc
   sl.registerFactory(
     () => TodosBloc(
       todo: sl(),
@@ -36,4 +37,5 @@ Future<void> init() async {
   sl.registerLazySingleton<TodoLocalDataSource>(
     () => TodoLocalDataSourceImpl(),
   );
+  print('init');
 }

@@ -53,7 +53,9 @@ class TodoListPage extends StatelessWidget {
           ),
         ),
         body: BlocProvider<TodosBloc>(
-          create: (_) => sl<TodosBloc>()..add(GetTodosEvent()),
+          create: (_) {
+            return sl<TodosBloc>()..add(GetTodosEvent());
+          },
           child: Column(children: <Widget>[
             SizedBox(
               height: 50.0,
