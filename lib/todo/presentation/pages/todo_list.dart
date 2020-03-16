@@ -69,6 +69,7 @@ class TodoListPage extends StatelessWidget {
                 } else if (state is TodosNotLoaded) {
                   return Text('not loaded');
                 }
+                return Container();
               },
             )
           ]),
