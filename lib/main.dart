@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_bygaga/todo/presentation/pages/todo.dart';
 import 'package:todo_bygaga/todo/presentation/pages/todo_list.dart';
+import 'package:todo_bygaga/todo/presentation/pages/todo_scroll.dart';
 
 import 'core/routes.dart';
 import 'injection_container.dart' as di;
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.todoList: (_) => TodoListPage(),
         Routes.todo: (_) => TodoPage(),
+        Routes.todoScroll: (_) => TodoScroll(),
       },
 //      initialRoute: Routes.todo,
     );

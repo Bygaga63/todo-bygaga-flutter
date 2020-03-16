@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_bygaga/core/routes.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/simple_card.dart';
 
 class AddCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleCard(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(Routes.todoScroll),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

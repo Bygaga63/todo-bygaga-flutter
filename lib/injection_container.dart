@@ -37,5 +37,4 @@ Future<void> init() async {
   sl.registerLazySingleton<TodoLocalDataSource>(
     () => TodoLocalDataSourceImpl(),
   );
-  print('init');
 }
