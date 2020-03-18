@@ -70,39 +70,64 @@ class _TaskListState extends State<TaskList> {
         });
   }
 
+  Widget _closeButton(context) => ClipOval(
+        child: InkWell(
+          onTap: () => Navigator.of(context).pop(),
+          child: Container(
+            padding: EdgeInsets.all(1.0),
+            color: Color(0xFFF4F4F4),
+            child: Icon(
+              Icons.close,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ListTile(
-          leading: CircularPercentIndicator(
-            radius: 30.0,
-            lineWidth: 3.5,
-            percent: _completedPercent,
-            backgroundColor: Color(0xFF333436),
-            progressColor: Color(widget.todo.color),
+    return SafeArea(
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              ListTile(
+                leading: CircularPercentIndicator(
+                  radius: 30.0,
+                  lineWidth: 3.5,
+                  percent: _completedPercent,
+                  backgroundColor: Color(0xFF333436),
+                  progressColor: Color(widget.todo.color),
+                ),
+                dense: true,
+                title: Text(
+                  widget.todo.title,
+                  style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                    '${_completedTasks.length} of ${widget.todo.tasks.length} tasks'),
+              ),
+              Divider(thickness: 1.5),
+              Column(
+                children: _getCurrentComponents,
+              ),
+              ExpansionTile(
+                title: Text(
+                  'Show completed (${_currentTasks.length})',
+                  style: TextStyle(color: _expansionColor),
+                ),
+                children: _getCompletedComponents,
+                onExpansionChanged: _onExpansionClick,
+              ),
+            ],
           ),
-          dense: true,
-          title: Text(
-            widget.todo.title,
-            style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.w600),
-          ),
-          subtitle: Text(
-              '${_completedTasks.length} of ${widget.todo.tasks.length} tasks'),
-        ),
-        Divider(thickness: 1.5),
-        Column(
-          children: _getCurrentComponents,
-        ),
-        ExpansionTile(
-          title: Text(
-            'Show completed (${_currentTasks.length})',
-            style: TextStyle(color: _expansionColor),
-          ),
-          children: _getCompletedComponents,
-          onExpansionChanged: _onExpansionClick,
-        ),
-      ],
+          Positioned(
+            child: this._closeButton(context),
+            right: 5.0,
+            top: 5.0,
+          )
+        ],
+      ),
     );
   }
 }

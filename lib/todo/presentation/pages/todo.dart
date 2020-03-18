@@ -32,38 +32,11 @@ class _TodoPageState extends State<TodoPage> {
         });
   }
 
-  Widget _closeButton(context) => ClipOval(
-        child: InkWell(
-          onTap: () => Navigator.of(context).pop(),
-          child: Container(
-            padding: EdgeInsets.all(1.0),
-            color: Color(0xFFF4F4F4),
-            child: Icon(
-              Icons.close,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.todoBackgroundColor,
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            TaskList(
-              todo: widget.todo,
-            ),
-            Positioned(
-              child: this._closeButton(context),
-              right: 5.0,
-              top: 5.0,
-            )
-          ],
-        ),
-      ),
+      body: TaskList(todo: widget.todo),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addClick(context);
