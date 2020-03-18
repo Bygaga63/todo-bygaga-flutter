@@ -86,7 +86,7 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Container(
       child: Stack(
         children: <Widget>[
           Column(
