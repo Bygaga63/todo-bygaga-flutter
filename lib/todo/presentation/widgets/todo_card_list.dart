@@ -20,6 +20,7 @@ class TodoCardList extends StatelessWidget {
 
           return TodoCard(
             todo: todos[index - 1],
+            index: index - 1,
           );
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

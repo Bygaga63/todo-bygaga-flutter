@@ -31,7 +31,21 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.todoList: (_) => TodoListPage(),
         Routes.todo: (_) => TodoPage(),
-        Routes.todoScroll: (_) => TodosScrollPage(),
+      },
+
+      onGenerateRoute: (RouteSettings settings) {
+        final List<String> pathElements = settings.name.split('/');
+        if (pathElements[0] != '') {
+          return null;
+        }
+
+        if (pathElements[1] == 'todo') {
+          final int index = int.parse(pathElements[2]);
+          return MaterialPageRoute<bool>(
+            builder: (_) => TodosScrollPage(todoIndex: index),
+          );
+        }
+        return null;
       },
 //      initialRoute: Routes.todo,
     );

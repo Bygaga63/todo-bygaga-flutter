@@ -9,16 +9,22 @@ import 'package:todo_bygaga/todo/presentation/widgets/add_edit_task.dart';
 import 'package:todo_bygaga/todo/presentation/widgets/task_list.dart';
 
 class TodosScrollPage extends StatefulWidget {
+  final int todoIndex;
+
+  TodosScrollPage({this.todoIndex});
+
   @override
   _TodosScrollPageState createState() => _TodosScrollPageState();
 }
 
 class _TodosScrollPageState extends State<TodosScrollPage> {
   PageController _pageController;
-  int _pageIndex = 0;
+  int _pageIndex;
   @override
   void initState() {
+    super.initState();
     FlutterStatusbarcolor.setStatusBarColor(AppColors.todoListBackgroundColor);
+    _pageIndex = widget.todoIndex;
     _pageController =
         PageController(viewportFraction: 0.95, initialPage: _pageIndex);
   }
