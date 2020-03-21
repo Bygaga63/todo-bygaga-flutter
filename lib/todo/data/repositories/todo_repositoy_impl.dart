@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
+import 'package:todo_bygaga/core/error/exceptions.dart';
 import 'package:todo_bygaga/core/error/failures.dart';
 import 'package:todo_bygaga/todo/data/data_sources/todo_local_data_source.dart';
 import 'package:todo_bygaga/todo/data/models/todo_model.dart';
 import 'package:todo_bygaga/todo/domain/entities/todo.dart';
+import 'package:todo_bygaga/todo/domain/exceptions/todo_failures.dart';
 import 'package:todo_bygaga/todo/domain/repositories/todo_repository.dart';
 
 class TodoRepositoryImpl extends TodoRepository {
@@ -12,7 +14,14 @@ class TodoRepositoryImpl extends TodoRepository {
   TodoRepositoryImpl({@required this.localDataSource});
 
   @override
-  Future<Either<Failure, Todo>> getOne(String id) {}
+  Future<Either<Failure, Todo>> getOne(String id) async {
+    try {
+      final todo = await localDataSource.getOne(id);
+      return Right(TodoModel.toTodo(todo));
+    } on ServerException {
+      return Left(TodoNotFoundFailure());
+    }
+  }
 
   @override
   Future<Either<Failure, void>> remove(String id) {}

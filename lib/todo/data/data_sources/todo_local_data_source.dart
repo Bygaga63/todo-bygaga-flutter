@@ -1,6 +1,6 @@
-import 'package:todo_bygaga/todo/data/exceptions/todo_exceptions.dart';
 import 'package:todo_bygaga/todo/data/models/task_model.dart';
 import 'package:todo_bygaga/todo/data/models/todo_model.dart';
+import 'package:todo_bygaga/todo/domain/exceptions/todo_exceptions.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class TodoLocalDataSource {
@@ -44,7 +44,7 @@ class TodoLocalDataSourceImpl implements TodoLocalDataSource {
   @override
   Future<TodoModel> create(TodoModel todo) {
     String id = Uuid().v1();
-    todo.id = id;
+    todo.copyWith(id: id);
     _todos.add(todo);
     return Future.value(todo);
   }
@@ -72,6 +72,9 @@ class TodoLocalDataSourceImpl implements TodoLocalDataSource {
   @override
   Future<TodoModel> save(TodoModel updatedTodo) {
     final index = _todos.indexWhere((todo) => todo.id == updatedTodo.id);
+    if (index == -1) {
+      throw TodoNotFoundException();
+    }
     _todos[index] = updatedTodo;
     return Future.value(updatedTodo);
   }
